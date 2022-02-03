@@ -1,24 +1,20 @@
 package pt.upskill.projeto1.objects;
 
 import pt.upskill.projeto1.gui.ImageTile;
+import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
-public class Hero implements ImageTile {
+import java.util.List;
 
-    private Position position;
-
+public class Hero extends Character {
     public Hero(Position position) {
-        this.position = position;
+        super(position);
+        setHP(20);
+        setDamage(3);
     }
 
     @Override
     public String getName() {
         return "Hero";
     }
-
-    @Override
-    public Position getPosition() {
-        return position;
-    }
-
 }

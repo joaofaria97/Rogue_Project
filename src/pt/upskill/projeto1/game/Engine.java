@@ -12,19 +12,16 @@ import java.util.List;
 
 public class Engine {
 
+    private Room room;
+    private Hero hero;
+    private List<ImageTile> tiles;
+
     public void init(){
         ImageMatrixGUI gui = ImageMatrixGUI.getInstance();
+        hero = new Hero(null);
+        room = new Room("rooms/room0.txt", hero);
 
-        List<ImageTile> tiles = new ArrayList<>();
-        for(int i=0; i<10; i++){
-            for(int j=0; j<10; j++){
-                tiles.add(new Floor(new Position(i, j)));
-            }
-        }
-
-        Hero hero = new Hero(new Position(4, 3));
-        tiles.add(hero);
-
+        tiles = room.getTiles();
         gui.setEngine(this);
         gui.newImages(tiles);
         gui.go();
@@ -37,17 +34,8 @@ public class Engine {
     }
 
     public void notify(int keyPressed){
-        if (keyPressed == KeyEvent.VK_DOWN){
-            System.out.println("User pressed down key!");
-        }
-        if (keyPressed == KeyEvent.VK_UP){
-            System.out.println("User pressed up key!");
-        }
-        if (keyPressed == KeyEvent.VK_LEFT){
-            System.out.println("User pressed left key!");
-        }
-        if (keyPressed == KeyEvent.VK_RIGHT){
-            System.out.println("User pressed right key!");
+        for (Command command : Command.values()) {
+            if (command.getKeyCode() == keyPressed) room.play(command);
         }
     }
 

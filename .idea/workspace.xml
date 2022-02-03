@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f409e310-38d4-47a1-8bba-48a3a2b42e6f" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1jTu9goc6jnCfNu5DXWtIY76VLx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="pt.upskills.projeto.game" />
+      <recent name="pt.upskills.projeto.gui" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\N580V\OneDrive - ISCTE-IUL\Programação\Java\POO\Rogue_Iscte2020_v_1_0_Nome_Completo" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.DirectionTest">
+    <configuration name="Engine (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pt.upskill.projeto1.game.Engine" />
+      <module name="Rogue_UPskill2022_v1_Nome_Completo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.upskill.projeto1.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Engine" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pt.upskills.projeto.game.Engine" />
+      <module name="Rogue_UPskill2022_v1_Nome_Completo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.upskills.projeto.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DirectionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Rogue_UPskill2022_v1_Nome_Completo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.upskill.projeto1.rogue.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.upskill.projeto1.rogue.tests" />
+      <option name="MAIN_CLASS_NAME" value="pt.upskill.projeto1.rogue.tests.DirectionTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DirectionTest.testAsVector" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Rogue_UPskill2022_v1_Nome_Completo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.upskill.projeto1.rogue.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.upskill.projeto1.rogue.tests" />
+      <option name="MAIN_CLASS_NAME" value="pt.upskill.projeto1.rogue.tests.DirectionTest" />
+      <option name="METHOD_NAME" value="testAsVector" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Vector2DTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Rogue_UPskill2022_v1_Nome_Completo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.upskills.projeto.rogue.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.upskills.projeto.rogue.tests" />
+      <option name="MAIN_CLASS_NAME" value="pt.upskills.projeto.rogue.tests.Vector2DTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DirectionTest" />
+        <item itemvalue="Application.Engine (1)" />
+        <item itemvalue="JUnit.DirectionTest.testAsVector" />
+        <item itemvalue="Application.Engine" />
+        <item itemvalue="JUnit.Vector2DTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f409e310-38d4-47a1-8bba-48a3a2b42e6f" name="Default Changelist" comment="" />
+      <created>1603840252804</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603840252804</updated>
+      <workItem from="1603840255633" duration="303000" />
+      <workItem from="1603979715302" duration="5126000" />
+      <workItem from="1604355161849" duration="715000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="448" y="106" key="#Project_Structure" timestamp="1641776206026">
+      <screen x="0" y="25" width="1920" height="1005" />
+    </state>
+    <state x="448" y="106" key="#Project_Structure/0.25.1920.1005@0.25.1920.1005" timestamp="1641776206026" />
+    <state x="520" y="315" width="958" height="570" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1640654271786">
+      <screen x="0" y="25" width="1920" height="1005" />
+    </state>
+    <state x="520" y="315" width="958" height="570" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.25.1920.1005@0.25.1920.1005" timestamp="1640654271786" />
+    <state x="698" y="286" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1641773762628">
+      <screen x="0" y="25" width="1920" height="1005" />
+    </state>
+    <state x="698" y="286" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.25.1920.1005@0.25.1920.1005" timestamp="1641773762628" />
+    <state width="1878" height="166" key="GridCell.Tab.0.bottom" timestamp="1641692930447">
+      <screen x="0" y="25" width="1920" height="1005" />
+    </state>
+    <state width="1878" height="166" key="GridCell.Tab.0.bottom/0.25.1920.1005@0.25.1920.1005" timestamp="1641692930447" />
+    <state width="1878" height="166" key="GridCell.Tab.0.center" timestamp="1641692930446">
+      <screen x="0" y="25" width="1920" height="1005" />
+    </state>
+    <state width="1878" height="166" key="GridCell.Tab.0.center/0.25.1920.1005@0.25.1920.1005" timestamp="1641692930446" />
+    <state width="1878" height="166" key="GridCell.Tab.0.left" timestamp="1641692930446">
+      <screen x="0" y="25" width="1920" height="1005" />
+    </state>
+    <state width="1878" height="166" key="GridCell.Tab.0.left/0.25.1920.1005@0.25.1920.1005" timestamp="1641692930446" />
+    <state width="1878" height="166" key="GridCell.Tab.0.right" timestamp="1641692930446">
+      <screen x="0" y="25" width="1920" height="1005" />
+    </state>
+    <state width="1878" height="166" key="GridCell.Tab.0.right/0.25.1920.1005@0.25.1920.1005" timestamp="1641692930446" />
+    <state x="710" y="437" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1640654259752">
+      <screen x="0" y="25" width="1920" height="1005" />
+    </state>
+    <state x="710" y="437" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.25.1920.1005@0.25.1920.1005" timestamp="1640654259752" />
+  </component>
+</project>

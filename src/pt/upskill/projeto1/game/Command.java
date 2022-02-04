@@ -9,10 +9,10 @@ public enum Command {
     MOVE_DOWN (KeyEvent.VK_DOWN, Direction.DOWN),
     MOVE_LEFT (KeyEvent.VK_LEFT, Direction.LEFT),
     MOVE_RIGHT (KeyEvent.VK_RIGHT, Direction.RIGHT),
-    ITEM1 (KeyEvent.VK_1, null),
-    ITEM2 (KeyEvent.VK_2, null),
-    ITEM3 (KeyEvent.VK_3, null),
-    SPACE (KeyEvent.VK_SPACE, null);
+    DROP_ITEM1 (KeyEvent.VK_1, null),
+    DROP_ITEM2 (KeyEvent.VK_2, null),
+    DROP_ITEM3 (KeyEvent.VK_3, null),
+    FIRE (KeyEvent.VK_SPACE, null);
 
     private int keyCode;
     private Direction direction;

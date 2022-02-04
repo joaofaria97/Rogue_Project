@@ -60,6 +60,16 @@ public class Position {
         return new Position(getX()+vector2d.getX(), getY()+vector2d.getY());
     }
 
+    public int distance(Position position) {
+        return (Math.abs(position.getX() - x) + Math.abs(position.getY() - y));
+    }
+
+    public static Position random() {
+        int i = (int) (Math.random() * 10);
+        int j = (int) (Math.random() * 10);
+        return new Position(i, j);
+    }
+
     @Override
     public String toString() {
         return "(" + x + ", " + y + ")";

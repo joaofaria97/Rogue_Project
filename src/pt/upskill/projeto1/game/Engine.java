@@ -22,6 +22,7 @@ public class Engine {
         room = new Room("rooms/room0.txt", hero);
 
         tiles = room.getTiles();
+        System.out.println(tiles);
         gui.setEngine(this);
         gui.newImages(tiles);
         gui.go();

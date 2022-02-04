@@ -24,11 +24,10 @@ public class Thief extends Enemy {
         for (Direction direction : Direction.values()) {
             if (direction.isDiagonal()) directions.add(direction);
         }
-        System.out.println(directions);
     }
 
     @Override
     public int getChaseDistance() {
-        return 5;
+        return 4;
     }
 }

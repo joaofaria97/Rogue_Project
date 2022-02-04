@@ -6,7 +6,7 @@ import pt.upskill.projeto1.rogue.utils.Position;
 
 import java.util.List;
 
-public class Hero extends Character {
+public class Hero extends GameCharacter {
     public Hero(Position position) {
         super(position);
         setHP(20);

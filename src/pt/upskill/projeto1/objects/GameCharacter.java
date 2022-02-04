@@ -7,12 +7,12 @@ import pt.upskill.projeto1.rogue.utils.Vector2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Character extends Element implements Obstacle {
+public abstract class GameCharacter extends Element {
     protected List<Direction> directions;
     private int HP;
     private int damage;
 
-    public Character(Position position) {
+    public GameCharacter(Position position) {
         super(position);
         setDirections();
     }
@@ -48,8 +48,8 @@ public abstract class Character extends Element implements Obstacle {
         setPosition(getPosition().plus(vector2d));
     }
 
-    public void attack(Character character) {
-        System.out.printf("%s(HP:%d) attacks %s(HP:%d)!\n", getName(), getHP(), character.getName(), character.getHP());
+    public void attack(GameCharacter character) {
         character.setHP(character.getHP() - this.damage);
+//        System.out.printf("%s(HP:%d) attacks %s(HP:%d)!\n", getName(), getHP(), character.getName(), character.getHP());
     }
 }

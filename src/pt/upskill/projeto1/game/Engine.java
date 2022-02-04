@@ -18,12 +18,12 @@ public class Engine {
 
     public void init(){
         ImageMatrixGUI gui = ImageMatrixGUI.getInstance();
-        hero = new Hero(null);
-        room = new Room("rooms/room0.txt");
-        room.setHero(hero);
 
+        hero = new Hero(null);
+        room = new Room("rooms/room0.txt", 0);
+        room.setHero(hero);
         tiles = room.getTiles();
-        System.out.println(tiles);
+
         gui.setEngine(this);
         gui.newImages(tiles);
         gui.go();

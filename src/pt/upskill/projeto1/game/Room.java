@@ -17,17 +17,15 @@ public class Room {
     private final int ROOM_WIDTH = 10;
     private final int ROOM_HEIGHT = 10;
 
+    private int roomNumber;
     private String fileName;
     private Hero hero;
     private List<ImageTile> tiles;
     private List<Element> obstacles;
     private List<Enemy> enemies;
 
-    public Room(String fileName, Hero hero) {
+    public Room(String fileName) {
         this.fileName = fileName;
-        this.hero = hero;
-        this.hero.setPosition(new Position(5, 3));
-
         tiles = new ArrayList<ImageTile>();
         obstacles = new ArrayList<Element>();
         enemies = new ArrayList<Enemy>();
@@ -73,18 +71,16 @@ public class Room {
         }
     }
 
-    private void undertaker() {
-        List<Character> deceased = new ArrayList<Character>();
+    private void clearDead() {
+        List<Enemy> dead = new ArrayList<Enemy>();
         for (Enemy enemy : enemies) {
             if (enemy.getHP() <= 0) {
-                deceased.add(enemy);
-
+                dead.add(enemy);
+                ImageMatrixGUI.getInstance().removeImage(enemy);
             }
         }
-        if (hero.getHP() <= 0) deceased.add(hero);
-        for (Character dead : deceased) ImageMatrixGUI.getInstance().removeImage(dead);
-        enemies.removeAll(deceased);
-        tiles.removeAll(deceased);
+        enemies.removeAll(dead);
+        tiles.removeAll(dead);
     }
 
     public String getFileName() {
@@ -112,19 +108,23 @@ public class Room {
     }
 
     public void play(Command command) {
-        undertaker();
         controlEnemies();
-        if (command.getDirection() != null) {
-            controlHero(command.getDirection());
-        }
+        controlHero(command);
+        clearDead();
     }
 
-    private void controlHero(Direction direction) {
-        Position nextPosition = hero.getPosition().plus(direction.asVector());
-        if (legalMove(nextPosition)) hero.move(direction.asVector());
-        for (Enemy enemy : enemies) {
-            if (nextPosition.equals(enemy.getPosition())) hero.attack(enemy);
+    private void controlHero(Command command) {
+        if (command.getDirection() != null) {
+            Position nextPosition = hero.getPosition().plus(command.getDirection().asVector());
+            if (legalMove(nextPosition)) hero.move(command.getDirection().asVector());
+            for (Enemy enemy : enemies) {
+                if (nextPosition.equals(enemy.getPosition())) hero.attack(enemy);
+            }
+        } else {
+//            disparar
+//            collectibles
         }
+
     }
 
     private void controlEnemies() {

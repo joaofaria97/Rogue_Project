@@ -19,7 +19,6 @@ public class Room {
     private final int ROOM_HEIGHT = 10;
 
     private int roomNumber;
-    private String fileName;
 
     private Hero hero;
     private Position seedPosition;
@@ -27,25 +26,76 @@ public class Room {
     private List<ImageTile> tiles;
     private List<Element> obstacles;
     private List<Enemy> enemies;
-
     private List<Passage> passages;
-    private Passage exit;
 
-    public Room(String fileName, int roomNumber) {
-        this.roomNumber = roomNumber;
-        this.fileName = fileName;
+    private Passage leaveRoom;
+
+    public Room(File roomFile) {
+        this.roomNumber = Integer.parseInt(roomFile.getName().split("room")[1].split(".txt")[0]);
 
         tiles = new ArrayList<ImageTile>();
         obstacles = new ArrayList<Element>();
         enemies = new ArrayList<Enemy>();
         passages = new ArrayList<Passage>();
 
+        readHeader(roomFile);
+        buildMap(roomFile);
+    }
+
+    private void readHeader(File roomFile) {
         try {
-            Scanner fileScanner = new Scanner(new File(fileName));
-            readHeader(fileScanner);
-            buildMap(fileScanner);
+            Scanner fileScanner = new Scanner(roomFile);
+            while (fileScanner.hasNextLine()) {
+                String fileLine = fileScanner.nextLine();
+                if (fileLine.charAt(0) == '#') {
+                    if (fileLine.length() > 1) {
+                        String[] passageInfo = fileLine.substring(2).split(" ");
+                        int passageNumber = Integer.parseInt(passageInfo[0]);
+                        int toPassageNumber = Integer.parseInt(passageInfo[3]);
+                        int toRoomNumber = Integer.parseInt(passageInfo[2].split("room")[1].split(".txt")[0]);
+                        char ch = passageInfo[1].charAt(0);
+                        if (ch == 'E') passages.add(new DoorOpen(null, passageNumber, toPassageNumber, toRoomNumber));
+                    }
+                }
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void buildMap(File roomFile) {
+        paintFloor();
+        try {
+            Scanner fileScanner = new Scanner(roomFile);
+            int j = 0;
+            while (fileScanner.hasNextLine()) {
+                String fileLine = fileScanner.nextLine();
+                if (fileLine.charAt(0) != '#') {
+                    for (int i = 0; i < fileLine.length(); i++) {
+                        Position position = new Position(i, j);
+                        char ch = fileLine.charAt(i);
+                        if (ch == 'H') seedPosition = position;
+                        if (ch == 'W') tiles.add(new Wall(position));
+                        if (ch == 'S') tiles.add(new Skeleton(position));
+                        if (ch == 'T') tiles.add(new Thief(position));
+                        if (Character.isDigit(ch)) {
+                            for (Passage passage : passages) {
+                                if (passage.getPassageNumber() == Integer.parseInt("" + ch)) {
+                                    passage.setPosition(position);
+                                    tiles.add(passage);
+                                };
+                            }
+                        }
+                    }
+                    j++;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        for (ImageTile tile : tiles) {
+            if (tile instanceof Obstacle) obstacles.add((Element) tile);
+            if (tile instanceof Enemy) enemies.add((Enemy) tile);
         }
     }
 
@@ -60,48 +110,12 @@ public class Room {
         for (int i = 0; i < grassTiles; i++) tiles.add(new Grass(Position.random()));
     }
 
-    private void readHeader(Scanner fileScanner) {
-        while (fileScanner.hasNextLine()) {
-            String fileLine = fileScanner.nextLine();
-            if (fileLine.charAt(0) == '#') {
-                if (fileLine.length() > 1) {
-                    String[] passageInfo = fileLine.substring(2).split(" ");
-                    int toRoom = Integer.parseInt(passageInfo[2].split("room")[1].split(".txt")[0]);
-                    int passageNumber = Integer.parseInt(passageInfo[0]);
-                    int toPassage = Integer.parseInt(passageInfo[3]);
-                    if (passageInfo[1].equals("E")) passages.add(new DoorOpen(null, passageNumber, toRoom, toPassage));
-                }
-            }
-        }
+    public int getRoomNumber() {
+        return roomNumber;
     }
 
-    private void buildMap(Scanner fileScanner) {
-        paintFloor();
-        int j = 0;
-        while (fileScanner.hasNextLine()) {
-            String fileLine = fileScanner.nextLine();
-            for (int i = 0; i < fileLine.length(); i++) {
-                Position position = new Position(i, j);
-                char ch = fileLine.charAt(i);
-                if (ch == 'H') seedPosition = position;
-                if (ch == 'W') tiles.add(new Wall(position));
-                if (ch == 'S') tiles.add(new Skeleton(position));
-                if (ch == 'T') tiles.add(new Thief(position));
-                if (Character.isDigit(ch)) {
-                    for (Passage passage : passages) {
-                        if (passage.getPassageNumber() == Integer.parseInt("" + ch)) {
-                            passage.setPosition(position);
-                            tiles.add(passage);
-                        };
-                    }
-                }
-            }
-            j++;
-        }
-        for (ImageTile tile : tiles) {
-            if (tile instanceof Obstacle) obstacles.add((Element) tile);
-            if (tile instanceof Enemy) enemies.add((Enemy) tile);
-        }
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
     public Hero getHero() {
@@ -111,6 +125,7 @@ public class Room {
     public void setHero(Hero hero) {
         this.hero = hero;
         if (seedPosition != null) hero.setPosition(seedPosition);
+        seedPosition = null;
         tiles.add(hero);
     }
 
@@ -118,24 +133,36 @@ public class Room {
         return tiles;
     }
 
-    public void setTiles(List<ImageTile> tiles) {
-        this.tiles = tiles;
+    public List<Passage> getPassages() {
+        return passages;
+    }
+
+    public Passage getLeaveRoom() {
+        return leaveRoom;
     }
 
     public void play(Command command) {
-        controlHero(command);
-        clearDead();
         controlEnemies();
         clearDead();
+
+        controlHero(command);
+        clearDead();
+
     }
 
     private void controlHero(Command command) {
+        leaveRoom = null;
+
         if (command.getDirection() != null) {
             Position nextPosition = hero.getPosition().plus(command.getDirection().asVector());
-            if (passage(nextPosition)) {
 
-            }
             if (legalMove(nextPosition)) hero.move(command.getDirection().asVector());
+            for (Passage passage : passages) {
+                if (passage.getPosition().equals(nextPosition) && !passage.isLocked()) {
+                    leaveRoom = passage;
+                    return;
+                }
+            }
             for (Enemy enemy : enemies) {
                 if (nextPosition.equals(enemy.getPosition())) hero.attack(enemy);
             }
@@ -193,21 +220,12 @@ public class Room {
         return move;
     }
 
-    private boolean passage(Position position) {
-        boolean isPassage = false;
-        for (Passage passage : passages) {
-            if (passage.getPosition().equals(position)) isPassage = true;
-        }
-        return isPassage;
-    }
-
     private void clearDead() {
         List<Enemy> dead = new ArrayList<Enemy>();
         for (Enemy enemy : enemies) {
             if (enemy.getHP() <= 0) {
                 dead.add(enemy);
                 ImageMatrixGUI.getInstance().removeImage(enemy);
-                System.out.println("Thief image gone");
             }
         }
         tiles.removeAll(dead);

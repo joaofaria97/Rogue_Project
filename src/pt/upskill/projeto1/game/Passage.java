@@ -8,15 +8,16 @@ import pt.upskill.projeto1.rogue.utils.Position;
 
 public abstract class Passage extends Element implements Obstacle {
     private int passageNumber;
-    private int toRoom;
-    private int toPassage;
-    private Hero hero;
+    private int toPassageNumber;
+    private int toRoomNumber;
+    private boolean locked;
 
-    public Passage(Position position, int passageNumber, int toRoom, int toPassage) {
+    public Passage(Position position, int passageNumber, int toPassageNumber, int toRoomNumber) {
         super(position);
         this.passageNumber = passageNumber;
-        this.toRoom = toRoom;
-        this.toPassage = toPassage;
+        this.toPassageNumber = toPassageNumber;
+        this.toRoomNumber = toRoomNumber;
+        locked = false;
     }
 
     public int getPassageNumber() {
@@ -27,36 +28,27 @@ public abstract class Passage extends Element implements Obstacle {
         this.passageNumber = passageNumber;
     }
 
-    public int getToRoom() {
-        return toRoom;
+    public int getToPassageNumber() {
+        return toPassageNumber;
     }
 
-    public void setToRoom(int toRoom) {
-        this.toRoom = toRoom;
+    public void setToPassageNumber(int toPassageNumber) {
+        this.toPassageNumber = toPassageNumber;
     }
 
-    public int getToPassage() {
-        return toPassage;
+    public int getToRoomNumber() {
+        return toRoomNumber;
     }
 
-    public void setToPassage(int toPassage) {
-        this.toPassage = toPassage;
+    public void setToRoomNumber(int toRoomNumber) {
+        this.toRoomNumber = toRoomNumber;
     }
 
-    public Hero getHero() {
-        return hero;
+    public boolean isLocked() {
+        return locked;
     }
 
-    public void setHero(Hero hero) {
-        this.hero = hero;
-    }
-
-    @Override
-    public String toString() {
-        return "Passage{" +
-                "passageNumber=" + passageNumber +
-                ", toRoom=" + toRoom +
-                ", toPassage=" + toPassage +
-                '}';
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 }

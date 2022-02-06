@@ -2,6 +2,7 @@ package pt.upskill.projeto1.game;
 
 import pt.upskill.projeto1.gui.FireTile;
 import pt.upskill.projeto1.gui.ImageMatrixGUI;
+import pt.upskill.projeto1.objects.Fire;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
@@ -21,11 +22,14 @@ public class FireBallThread extends Thread {
         while (control) {
             Position nextPosition = fireTile.getPosition().plus(direction.asVector());
             fireTile.setPosition(nextPosition);
+            ImageMatrixGUI.getInstance().addImage(fireTile);
             try {
-                if (!fireTile.validateImpact()) {
+                if (fireTile.validateImpact()) {
+                    System.out.println(fireTile.getPosition());
                     // FireBall continue
                     sleep(300);
                 }else{
+                    System.out.println("Kaboom");
                     // FireBall should explode and stop is job
                     sleep(500);
                     control = false;

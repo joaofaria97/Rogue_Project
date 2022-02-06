@@ -3,15 +3,13 @@ package pt.upskill.projeto1.objects;
 import pt.upskill.projeto1.gui.FireTile;
 import pt.upskill.projeto1.rogue.utils.Position;
 
+import static pt.upskill.projeto1.game.Engine.currentRoom;
+
 public class Fire implements FireTile {
     private Position position;
-    private boolean impact;
 
-    public Fire() {}
-
-    @Override
-    public Position getPosition() {
-        return position;
+    public Fire(Position position) {
+        this.position = position;
     }
 
     @Override
@@ -19,17 +17,17 @@ public class Fire implements FireTile {
         this.position = position;
     }
 
-    public boolean isImpact() {
-        return impact;
-    }
-
-    public void setImpact(boolean impact) {
-        this.impact = impact;
+    @Override
+    public Position getPosition() {
+        return position;
     }
 
     @Override
     public boolean validateImpact() {
-        return impact;
+        for (Element obstacle : currentRoom.getObstacles()) {
+            if (obstacle.getPosition().equals(position)) return false;
+        }
+        return true;
     }
 
     @Override

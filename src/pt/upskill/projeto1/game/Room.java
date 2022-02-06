@@ -23,6 +23,8 @@ public class Room {
     private Hero hero;
     private Position seedPosition;
 
+    Direction lastDirection;
+
     private List<ImageTile> tiles;
     private List<Element> obstacles;
     private List<Enemy> enemies;
@@ -33,6 +35,8 @@ public class Room {
 
     public Room(File roomFile) {
         this.roomNumber = Integer.parseInt(roomFile.getName().split("room")[1].split(".txt")[0]);
+
+        lastDirection = Direction.RIGHT;
 
         tiles = new ArrayList<ImageTile>();
         obstacles = new ArrayList<Element>();
@@ -117,10 +121,6 @@ public class Room {
         return roomNumber;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
-    }
-
     public Hero getHero() {
         return hero;
     }
@@ -134,6 +134,10 @@ public class Room {
 
     public List<ImageTile> getTiles() {
         return tiles;
+    }
+
+    public List<Element> getObstacles() {
+        return obstacles;
     }
 
     public List<Passage> getPassages() {
@@ -159,8 +163,9 @@ public class Room {
     private void controlHero(Command command) {
         leaving = false;
         leavingPassage = null;
-
         if (command.getDirection() != null) {
+            lastDirection = command.getDirection();
+
             Position nextPosition = hero.getPosition().plus(command.getDirection().asVector());
 
             for (Passage passage : passages) {
@@ -177,6 +182,11 @@ public class Room {
             if (legalMove(nextPosition)) hero.move(command.getDirection().asVector());
 
         } else {
+            if (command.name() == "FIRE") {
+                Fire fire = hero.getFireBall();
+                fire.setPosition(hero.getPosition());
+                hero.launchFire(fire, lastDirection);
+            }
 //            disparar
 //            collectibles
         }

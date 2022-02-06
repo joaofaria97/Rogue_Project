@@ -7,7 +7,7 @@ import pt.upskill.projeto1.objects.Obstacle;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
-public abstract class Passage extends Element {
+public abstract class Passage extends Element implements Obstacle {
     private final int passageNumber;
     private final int toPassageNumber;
     private final int toRoomNumber;

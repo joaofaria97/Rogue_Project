@@ -26,4 +26,6 @@ public interface FireTile extends ImageTile {
      */
     void setPosition(Position position);
 
+    Position getPosition();
+
 }

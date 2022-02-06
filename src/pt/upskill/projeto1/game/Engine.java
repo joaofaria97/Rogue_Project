@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Engine {
 
-    private Room currentRoom;
+    public static Room currentRoom;
     private List<Room> rooms;
     private Hero hero;
     private List<ImageTile> tiles;
@@ -44,6 +44,7 @@ public class Engine {
     }
 
     public void notify(int keyPressed){
+        tiles = currentRoom.getTiles();
         for (Command command : Command.values()) {
             if (command.getKeyCode() == keyPressed) {
                 currentRoom.play(command);

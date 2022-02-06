@@ -4,12 +4,14 @@ import pt.upskill.projeto1.gui.ImageTile;
 import pt.upskill.projeto1.objects.Element;
 import pt.upskill.projeto1.objects.Hero;
 import pt.upskill.projeto1.objects.Obstacle;
+import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
-public abstract class Passage extends Element implements Obstacle {
-    private int passageNumber;
-    private int toPassageNumber;
-    private int toRoomNumber;
+public abstract class Passage extends Element {
+    private final int passageNumber;
+    private final int toPassageNumber;
+    private final int toRoomNumber;
+    private Direction leaveDirection;
     private boolean locked;
 
     public Passage(Position position, int passageNumber, int toPassageNumber, int toRoomNumber) {
@@ -24,24 +26,20 @@ public abstract class Passage extends Element implements Obstacle {
         return passageNumber;
     }
 
-    public void setPassageNumber(int passageNumber) {
-        this.passageNumber = passageNumber;
-    }
-
     public int getToPassageNumber() {
         return toPassageNumber;
-    }
-
-    public void setToPassageNumber(int toPassageNumber) {
-        this.toPassageNumber = toPassageNumber;
     }
 
     public int getToRoomNumber() {
         return toRoomNumber;
     }
 
-    public void setToRoomNumber(int toRoomNumber) {
-        this.toRoomNumber = toRoomNumber;
+    public Direction getLeaveDirection() {
+        return leaveDirection;
+    }
+
+    public void setLeaveDirection(Direction leaveDirection) {
+        this.leaveDirection = leaveDirection;
     }
 
     public boolean isLocked() {
@@ -50,5 +48,12 @@ public abstract class Passage extends Element implements Obstacle {
 
     public void setLocked(boolean locked) {
         this.locked = locked;
+    }
+
+    @Override
+    public String toString() {
+        return "Passage{" +
+                "leaveDirection=" + leaveDirection +
+                '}';
     }
 }

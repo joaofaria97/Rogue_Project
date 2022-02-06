@@ -1,13 +1,14 @@
 #
 # 0 E room0.txt 0
+# 1 E room2.txt 0
 #
 WWWWWWWWWW
-WS     S W
-W  S     W
-W  WWWWWWW
-W        W
-WWWWWWW  W
-W        W
-W  WWWWWWW
-W        W
-WWWWWWWW0W
+WS   W S W
+WWW      W
+W    W   W
+W  W  W  W
+W  W  W  W
+W  W  W  W
+W  W  W  W
+W W   SW W
+W1WWWWWW0W

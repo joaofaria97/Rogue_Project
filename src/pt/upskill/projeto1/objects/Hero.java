@@ -5,8 +5,10 @@ import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
 import java.util.List;
+import java.util.Queue;
 
 public class Hero extends GameCharacter {
+    private Queue<Fire>;
     public Hero(Position position) {
         super(position);
         setHP(20);

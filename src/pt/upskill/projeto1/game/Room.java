@@ -28,7 +28,8 @@ public class Room {
     private List<Enemy> enemies;
     private List<Passage> passages;
 
-    private Passage leaveRoom;
+    private boolean leaving;
+    private Passage leavingPassage;
 
     public Room(File roomFile) {
         this.roomNumber = Integer.parseInt(roomFile.getName().split("room")[1].split(".txt")[0]);
@@ -80,6 +81,8 @@ public class Room {
                         if (ch == 'T') tiles.add(new Thief(position));
                         if (Character.isDigit(ch)) {
                             for (Passage passage : passages) {
+                                Direction leaveDirection = j == ROOM_HEIGHT - 1 ? Direction.DOWN : Direction.UP;
+                                passage.setLeaveDirection(leaveDirection);
                                 if (passage.getPassageNumber() == Integer.parseInt("" + ch)) {
                                     passage.setPosition(position);
                                     tiles.add(passage);
@@ -137,8 +140,12 @@ public class Room {
         return passages;
     }
 
-    public Passage getLeaveRoom() {
-        return leaveRoom;
+    public boolean isLeaving() {
+        return leaving;
+    }
+
+    public Passage getLeavingPassage() {
+        return leavingPassage;
     }
 
     public void play(Command command) {
@@ -147,25 +154,28 @@ public class Room {
 
         controlHero(command);
         clearDead();
-
     }
 
     private void controlHero(Command command) {
-        leaveRoom = null;
+        leaving = false;
+        leavingPassage = null;
 
         if (command.getDirection() != null) {
             Position nextPosition = hero.getPosition().plus(command.getDirection().asVector());
 
-            if (legalMove(nextPosition)) hero.move(command.getDirection().asVector());
             for (Passage passage : passages) {
-                if (passage.getPosition().equals(nextPosition) && !passage.isLocked()) {
-                    leaveRoom = passage;
+                if ((passage.getPosition().equals(hero.getPosition()) && command.getDirection().equals(passage.getLeaveDirection()))
+                        || passage.getPosition().equals(nextPosition)) {
+                    leaving = true;
+                    leavingPassage = passage;
                     return;
                 }
             }
             for (Enemy enemy : enemies) {
                 if (nextPosition.equals(enemy.getPosition())) hero.attack(enemy);
             }
+            if (legalMove(nextPosition)) hero.move(command.getDirection().asVector());
+
         } else {
 //            disparar
 //            collectibles
@@ -231,5 +241,12 @@ public class Room {
         tiles.removeAll(dead);
         enemies.removeAll(dead);
         obstacles.removeAll(dead);
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomNumber=" + roomNumber +
+                '}';
     }
 }

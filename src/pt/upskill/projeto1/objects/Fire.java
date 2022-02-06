@@ -3,15 +3,33 @@ package pt.upskill.projeto1.objects;
 import pt.upskill.projeto1.gui.FireTile;
 import pt.upskill.projeto1.rogue.utils.Position;
 
-public class Fire extends Element implements FireTile {
+public class Fire implements FireTile {
+    private Position position;
+    private boolean impact;
 
-    protected Fire(Position position) {
-        super(position);
+    public Fire() {}
+
+    @Override
+    public Position getPosition() {
+        return position;
+    }
+
+    @Override
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public boolean isImpact() {
+        return impact;
+    }
+
+    public void setImpact(boolean impact) {
+        this.impact = impact;
     }
 
     @Override
     public boolean validateImpact() {
-        return false;
+        return impact;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class FireBallThread extends Thread {
             Position nextPosition = fireTile.getPosition().plus(direction.asVector());
             fireTile.setPosition(nextPosition);
             try {
-                if (fireTile.validateImpact()) {
+                if (!fireTile.validateImpact()) {
                     // FireBall continue
                     sleep(300);
                 }else{

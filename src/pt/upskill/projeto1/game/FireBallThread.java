@@ -1,10 +1,12 @@
 package pt.upskill.projeto1.game;
 
+import pt.upskill.projeto1.gui.Explosion;
 import pt.upskill.projeto1.gui.FireTile;
 import pt.upskill.projeto1.gui.ImageMatrixGUI;
-import pt.upskill.projeto1.objects.Fire;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
+
+import static pt.upskill.projeto1.game.Engine.gui;
 
 public class FireBallThread extends Thread {
 
@@ -19,18 +21,19 @@ public class FireBallThread extends Thread {
     @Override
     public void run() {
         boolean control = true;
+        Explosion explosion = null;
         while (control) {
             Position nextPosition = fireTile.getPosition().plus(direction.asVector());
             fireTile.setPosition(nextPosition);
             ImageMatrixGUI.getInstance().addImage(fireTile);
             try {
                 if (fireTile.validateImpact()) {
-                    System.out.println(fireTile.getPosition());
                     // FireBall continue
                     sleep(300);
                 }else{
-                    System.out.println("Kaboom");
                     // FireBall should explode and stop is job
+                    explosion = new Explosion(nextPosition);
+                    ImageMatrixGUI.getInstance().addImage(explosion);
                     sleep(500);
                     control = false;
                 }
@@ -39,6 +42,10 @@ public class FireBallThread extends Thread {
             }
         }
         // Remove FireBall of {ImageMatrixGUI}
-        ImageMatrixGUI.getInstance().removeImage(fireTile);
+        gui.removeImage(fireTile);
+        try {
+            gui.removeImage(explosion);
+        } catch (NullPointerException e) {
+        }
     }
 }

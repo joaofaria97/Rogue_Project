@@ -49,11 +49,4 @@ public abstract class Passage extends Element implements Obstacle {
     public void setLocked(boolean locked) {
         this.locked = locked;
     }
-
-    @Override
-    public String toString() {
-        return "Passage{" +
-                "leaveDirection=" + leaveDirection +
-                '}';
-    }
 }

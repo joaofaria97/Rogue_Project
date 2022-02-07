@@ -1,6 +1,9 @@
-package pt.upskill.projeto1.objects;
+package pt.upskill.projeto1.gui;
 
 import pt.upskill.projeto1.gui.FireTile;
+import pt.upskill.projeto1.gui.ImageMatrixGUI;
+import pt.upskill.projeto1.objects.Element;
+import pt.upskill.projeto1.objects.GameCharacter;
 import pt.upskill.projeto1.rogue.utils.Position;
 
 import static pt.upskill.projeto1.game.Engine.currentRoom;
@@ -25,7 +28,13 @@ public class Fire implements FireTile {
     @Override
     public boolean validateImpact() {
         for (Element obstacle : currentRoom.getObstacles()) {
-            if (obstacle.getPosition().equals(position)) return false;
+            if (obstacle.getPosition().equals(position)) {
+                if (obstacle instanceof GameCharacter) {
+                    ((GameCharacter) obstacle).setHP(0);
+                    ImageMatrixGUI.getInstance().removeImage(obstacle);
+                }
+                return false;
+            }
         }
         return true;
     }

@@ -1,23 +1,27 @@
 package pt.upskill.projeto1.game;
 
-import pt.upskill.projeto1.gui.ImageMatrixGUI;
-import pt.upskill.projeto1.gui.ImageTile;
+import pt.upskill.projeto1.gui.*;
 import pt.upskill.projeto1.objects.Hero;
+import pt.upskill.projeto1.rogue.utils.Position;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class Engine {
 
+    public static ImageMatrixGUI gui;
     public static Room currentRoom;
+    public static StatusBar statusBar;
+
     private List<Room> rooms;
     private Hero hero;
     private List<ImageTile> tiles;
-    private ImageMatrixGUI gui;
 
     public void init(){
         gui = ImageMatrixGUI.getInstance();
+        statusBar = new StatusBar();
 
         hero = new Hero(null);
 

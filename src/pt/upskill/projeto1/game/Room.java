@@ -1,18 +1,19 @@
 package pt.upskill.projeto1.game;
 
+import pt.upskill.projeto1.gui.Fire;
 import pt.upskill.projeto1.gui.ImageMatrixGUI;
 import pt.upskill.projeto1.gui.ImageTile;
 import pt.upskill.projeto1.objects.*;
-import pt.upskill.projeto1.objects.GameCharacter;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
+import static pt.upskill.projeto1.game.Engine.*;
 
 public class Room {
     private final int ROOM_WIDTH = 10;
@@ -153,9 +154,11 @@ public class Room {
     }
 
     public void play(Command command) {
-        controlEnemies();
-        clearDead();
-
+        gui.setStatus("Sala " + currentRoom.getRoomNumber());
+        if (command.getDirection() != null) {
+            controlEnemies();
+//            clearDead();
+        }
         controlHero(command);
         clearDead();
     }
@@ -182,10 +185,13 @@ public class Room {
             if (legalMove(nextPosition)) hero.move(command.getDirection().asVector());
 
         } else {
-            if (command.name() == "FIRE") {
-                Fire fire = hero.getFireBall();
-                fire.setPosition(hero.getPosition());
-                hero.launchFire(fire, lastDirection);
+            if (command.name().equals("FIRE")) {
+                try {
+                    statusBar.removeFireBall();
+                    hero.launchFire(lastDirection);
+                } catch (NullPointerException e) {
+                    gui.setStatus("Já não tens bolas de fogo!");
+                }
             }
 //            disparar
 //            collectibles

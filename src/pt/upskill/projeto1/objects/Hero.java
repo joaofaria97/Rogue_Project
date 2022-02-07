@@ -1,13 +1,14 @@
 package pt.upskill.projeto1.objects;
 
 import pt.upskill.projeto1.game.FireBallThread;
-import pt.upskill.projeto1.gui.ImageTile;
+import pt.upskill.projeto1.gui.Fire;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
+
+import static pt.upskill.projeto1.game.Engine.statusBar;
 
 public class Hero extends GameCharacter {
     private Queue<Fire> fireBalls;
@@ -20,11 +21,13 @@ public class Hero extends GameCharacter {
         for (int i = 0; i < 3; i++) fireBalls.add(new Fire(position));
     }
 
-    public Fire getFireBall() {
-        return fireBalls.poll();
+    public Queue<Fire> getFireBalls() {
+        return fireBalls;
     }
 
-    public void launchFire(Fire fireBall, Direction direction) {
+    public void launchFire(Direction direction) {
+        Fire fireBall = fireBalls.poll();
+        fireBall.setPosition(getPosition());
         FireBallThread fireBallThread = new FireBallThread(direction, fireBall);
         fireBallThread.run();
     }

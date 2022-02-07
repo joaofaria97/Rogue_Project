@@ -3,10 +3,11 @@ package pt.upskill.projeto1.objects;
 import pt.upskill.projeto1.rogue.utils.Position;
 
 public abstract class Enemy extends GameCharacter implements Obstacle {
-    int chaseDistance;
+    private int chaseDistance;
 
     public Enemy(Position position) {
         super(position);
+        chaseDistance = 4;
     }
 
     public int getChaseDistance() {

@@ -25,7 +25,7 @@ public class FireBallThread extends Thread {
         while (control) {
             Position nextPosition = fireTile.getPosition().plus(direction.asVector());
             fireTile.setPosition(nextPosition);
-            ImageMatrixGUI.getInstance().addImage(fireTile);
+            gui.addImage(fireTile);
             try {
                 if (fireTile.validateImpact()) {
                     // FireBall continue
@@ -33,7 +33,7 @@ public class FireBallThread extends Thread {
                 }else{
                     // FireBall should explode and stop is job
                     explosion = new Explosion(nextPosition);
-                    ImageMatrixGUI.getInstance().addImage(explosion);
+                    gui.addImage(explosion);
                     sleep(500);
                     control = false;
                 }
@@ -43,6 +43,7 @@ public class FireBallThread extends Thread {
         }
         // Remove FireBall of {ImageMatrixGUI}
         gui.removeImage(fireTile);
+
         try {
             gui.removeImage(explosion);
         } catch (NullPointerException e) {

@@ -7,9 +7,11 @@ import pt.upskill.projeto1.rogue.utils.Vector2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pt.upskill.projeto1.game.Engine.statusBar;
+
 public abstract class GameCharacter extends Element {
-    protected List<Direction> directions;
-    private int HP;
+    protected static List<Direction> directions;
+    private int health;
     private int damage;
 
     public GameCharacter(Position position) {
@@ -17,16 +19,16 @@ public abstract class GameCharacter extends Element {
         setDirections();
     }
 
-    public List<Direction> getDirections() {
+    public static List<Direction> getDirections() {
         return directions;
     }
 
-    public int getHP() {
-        return HP;
+    public int getHealth() {
+        return health;
     }
 
-    public void setHP(int HP) {
-        this.HP = HP;
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public int getDamage() {
@@ -49,7 +51,8 @@ public abstract class GameCharacter extends Element {
     }
 
     public void attack(GameCharacter character) {
-        character.setHP(character.getHP() - this.damage);
+        character.setHealth(character.getHealth() - this.damage);
+        if (character instanceof Hero) statusBar.setHealthBar();
 //        System.out.printf("%s(HP:%d) attacks %s(HP:%d)!\n", getName(), getHP(), character.getName(), character.getHP());
     }
 }

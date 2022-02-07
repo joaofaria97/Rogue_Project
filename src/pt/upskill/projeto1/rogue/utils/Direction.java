@@ -39,4 +39,16 @@ public enum Direction {
 		if(this==Direction.RIGHT_DOWN) return Direction.RIGHT.asVector().plus(Direction.DOWN.asVector());
 		return null;
 	}
+
+	public Direction contrary() {
+		if(this==Direction.UP) return Direction.DOWN;
+		if(this==Direction.DOWN) return Direction.UP;
+		if(this==Direction.LEFT) return Direction.RIGHT;
+		if(this==Direction.RIGHT) return Direction.LEFT;
+		if(this==Direction.LEFT_UP) return Direction.RIGHT_DOWN;
+		if(this==Direction.RIGHT_UP) return Direction.LEFT_DOWN;
+		if(this==Direction.LEFT_DOWN) return Direction.RIGHT_UP;
+		if(this==Direction.RIGHT_DOWN) return Direction.LEFT_UP;
+		return null;
+	}
 }

@@ -1,13 +1,17 @@
 #
-# 0 E room1.txt 0
+# 0 D room1.txt 1
+# 1 D room1.txt 0 key1
+# 2 E room2.txt 0
+#
+# k key2
 #
 WWWW0WWWWW
 W        W
+W   S    W
+W    S   W
 W        W
-WWWWW    W
-W   W    W
-W   W  WWW
-W  H     W
-W        W
-W     T  W
-WWWWWWWWWW
+W      WWW
+W  H   WkW
+W      W W
+W      W 1
+WWWW2WWWWW

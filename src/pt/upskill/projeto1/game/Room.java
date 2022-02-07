@@ -54,13 +54,20 @@ public class Room {
             while (fileScanner.hasNextLine()) {
                 String fileLine = fileScanner.nextLine();
                 if (fileLine.charAt(0) == '#') {
-                    if (fileLine.length() > 1) {
-                        String[] passageInfo = fileLine.substring(2).split(" ");
-                        int passageNumber = Integer.parseInt(passageInfo[0]);
-                        int toPassageNumber = Integer.parseInt(passageInfo[3]);
-                        int toRoomNumber = Integer.parseInt(passageInfo[2].split("room")[1].split(".txt")[0]);
-                        char ch = passageInfo[1].charAt(0);
-                        if (ch == 'E') passages.add(new DoorOpen(null, passageNumber, toPassageNumber, toRoomNumber));
+                    try {
+                        String[] lineArray = fileLine.substring(2).split(" ");
+                        if (lineArray.length >= 4) {
+                            // passage info
+                            int passageNumber = Integer.parseInt(lineArray[0]);
+                            int toPassageNumber = Integer.parseInt(lineArray[3]);
+                            int toRoomNumber = Integer.parseInt(lineArray[2].split("room")[1].split(".txt")[0]);
+                            char ch = lineArray[1].charAt(0);
+                            if (ch == 'E') passages.add(new DoorOpen(null, passageNumber, toPassageNumber, toRoomNumber));
+                            if (ch == 'D') passages.add(new DoorWay(null, passageNumber, toPassageNumber, toRoomNumber));
+                        } else {
+                            // item info
+                        }
+                    } catch (StringIndexOutOfBoundsException e) {
                     }
                 }
             }
@@ -84,10 +91,9 @@ public class Room {
                         if (ch == 'W') tiles.add(new Wall(position));
                         if (ch == 'S') tiles.add(new Skeleton(position));
                         if (ch == 'T') tiles.add(new Thief(position));
+
                         if (Character.isDigit(ch)) {
                             for (Passage passage : passages) {
-                                Direction leaveDirection = j == ROOM_HEIGHT - 1 ? Direction.DOWN : Direction.UP;
-                                passage.setLeaveDirection(leaveDirection);
                                 if (passage.getPassageNumber() == Integer.parseInt("" + ch)) {
                                     passage.setPosition(position);
                                     tiles.add(passage);
@@ -104,6 +110,16 @@ public class Room {
         for (ImageTile tile : tiles) {
             if (tile instanceof Obstacle) obstacles.add((Element) tile);
             if (tile instanceof Enemy) enemies.add((Enemy) tile);
+        }
+        setPassageDirections();
+    }
+
+    private void setPassageDirections() {
+        for (Passage passage : passages) {
+            Position position = passage.getPosition();
+            for (Direction direction : hero.getDirections()) {
+                if (legalMove(position.plus(direction.asVector()))) passage.setLeaveDirection(direction.contrary());
+            }
         }
     }
 
@@ -157,7 +173,7 @@ public class Room {
         gui.setStatus("Sala " + currentRoom.getRoomNumber());
         if (command.getDirection() != null) {
             controlEnemies();
-//            clearDead();
+            clearDead();
         }
         controlHero(command);
         clearDead();
@@ -193,7 +209,6 @@ public class Room {
                     gui.setStatus("Já não tens bolas de fogo!");
                 }
             }
-//            disparar
 //            collectibles
         }
 
@@ -239,17 +254,20 @@ public class Room {
     }
 
     private boolean legalMove(Position position) {
-        boolean move = true;
+        if (position.getX() < 0 || position.getX() >= ROOM_WIDTH) return false;
+        if (position.getY() < 0 || position.getY() >= ROOM_HEIGHT) return false;
         for (Element obstacle : obstacles) {
-            if (position.equals(obstacle.getPosition())) move = false;
+            if (position.equals(obstacle.getPosition())) {
+                return false;
+            }
         }
-        return move;
+        return true;
     }
 
     private void clearDead() {
         List<Enemy> dead = new ArrayList<Enemy>();
         for (Enemy enemy : enemies) {
-            if (enemy.getHP() <= 0) {
+            if (enemy.getHealth() <= 0) {
                 dead.add(enemy);
                 ImageMatrixGUI.getInstance().removeImage(enemy);
             }

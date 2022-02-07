@@ -9,7 +9,7 @@ public class Thief extends Enemy {
 
     public Thief(Position position) {
         super(position);
-        setHP(8);
+        setHealth(8);
         setDamage(2);
     }
 
@@ -24,10 +24,5 @@ public class Thief extends Enemy {
         for (Direction direction : Direction.values()) {
             if (direction.isDiagonal()) directions.add(direction);
         }
-    }
-
-    @Override
-    public int getChaseDistance() {
-        return 4;
     }
 }

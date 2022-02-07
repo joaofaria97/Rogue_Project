@@ -11,12 +11,15 @@ import java.util.Queue;
 import static pt.upskill.projeto1.game.Engine.statusBar;
 
 public class Hero extends GameCharacter {
+    public static final int MAX_HEALTH = 20;
+    private final int BASE_DAMAGE = 5;
     private Queue<Fire> fireBalls;
 
     public Hero(Position position) {
         super(position);
-        setHP(20);
-        setDamage(3);
+        setHealth(MAX_HEALTH);
+        setDamage(BASE_DAMAGE);
+
         fireBalls = new LinkedList<Fire>();
         for (int i = 0; i < 3; i++) fireBalls.add(new Fire(position));
     }

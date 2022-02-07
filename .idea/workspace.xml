@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f409e310-38d4-47a1-8bba-48a3a2b42e6f" name="Default Changelist" comment="Fires balls correctly!">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Explosion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Black.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Explosion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Green.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/StatusBar.java" afterDir="false" />
+    <list default="true" id="f409e310-38d4-47a1-8bba-48a3a2b42e6f" name="Default Changelist" comment="Started status bar">
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Red.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/RedGreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/DoorWay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rooms/room0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/rooms/room0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rooms/room1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/rooms/room1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rooms/room2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/rooms/room2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/FireBallThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/FireBallThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Passage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Passage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Fire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Fire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/StatusBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/StatusBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/GameCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/GameCharacter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Hero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Skeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Skeleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Thief.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Thief.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/rogue/utils/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/rogue/utils/Direction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644168849011</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Started status bar">
+      <created>1644227599783</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1644227599783</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +243,8 @@
     <MESSAGE value="Hero moves between 3 rooms" />
     <MESSAGE value="Start fireballs" />
     <MESSAGE value="Fires balls correctly!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fires balls correctly!" />
+    <MESSAGE value="Started status bar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started status bar" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

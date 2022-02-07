@@ -7,6 +7,8 @@ import pt.upskill.projeto1.objects.Obstacle;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
+import java.util.List;
+
 public abstract class Passage extends Element implements Obstacle {
     private final int passageNumber;
     private final int toPassageNumber;
@@ -48,5 +50,12 @@ public abstract class Passage extends Element implements Obstacle {
 
     public void setLocked(boolean locked) {
         this.locked = locked;
+    }
+
+    @Override
+    public String toString() {
+        return "Passage{" +
+                "passageNumber=" + passageNumber +
+                '}';
     }
 }

@@ -21,9 +21,6 @@ public class Engine {
 
     public void init(){
         gui = ImageMatrixGUI.getInstance();
-        statusBar = new StatusBar();
-
-        hero = new Hero(null);
 
         rooms = new ArrayList<Room>();
         File roomDirectory = new File("rooms");
@@ -33,8 +30,11 @@ public class Engine {
         }
 
         currentRoom = rooms.get(0);
-        currentRoom.setHero(hero);
         tiles = currentRoom.getTiles();
+
+        hero = new Hero(null);
+        currentRoom.setHero(hero);
+        statusBar = new StatusBar();
 
         gui.setEngine(this);
         gui.newImages(tiles);
@@ -48,7 +48,6 @@ public class Engine {
     }
 
     public void notify(int keyPressed){
-        tiles = currentRoom.getTiles();
         for (Command command : Command.values()) {
             if (command.getKeyCode() == keyPressed) {
                 currentRoom.play(command);

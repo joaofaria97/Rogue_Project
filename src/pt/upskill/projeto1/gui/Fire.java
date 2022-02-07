@@ -7,6 +7,7 @@ import pt.upskill.projeto1.objects.GameCharacter;
 import pt.upskill.projeto1.rogue.utils.Position;
 
 import static pt.upskill.projeto1.game.Engine.currentRoom;
+import static pt.upskill.projeto1.game.Engine.gui;
 
 public class Fire implements FireTile {
     private Position position;
@@ -30,8 +31,8 @@ public class Fire implements FireTile {
         for (Element obstacle : currentRoom.getObstacles()) {
             if (obstacle.getPosition().equals(position)) {
                 if (obstacle instanceof GameCharacter) {
-                    ((GameCharacter) obstacle).setHP(0);
-                    ImageMatrixGUI.getInstance().removeImage(obstacle);
+                    ((GameCharacter) obstacle).setHealth(0);
+                    gui.removeImage(obstacle);
                 }
                 return false;
             }

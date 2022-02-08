@@ -1,12 +1,11 @@
-package pt.upskill.projeto1.gui;
+package pt.upskill.projeto1.objects.StatusBar;
 
-import pt.upskill.projeto1.objects.Hero;
+import pt.upskill.projeto1.gui.*;
+import pt.upskill.projeto1.objects.Characters.Hero;
 import pt.upskill.projeto1.rogue.utils.Position;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 import static pt.upskill.projeto1.game.Engine.currentRoom;
 import static pt.upskill.projeto1.game.Engine.gui;

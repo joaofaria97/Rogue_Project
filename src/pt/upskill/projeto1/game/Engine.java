@@ -1,13 +1,14 @@
 package pt.upskill.projeto1.game;
 
 import pt.upskill.projeto1.gui.*;
-import pt.upskill.projeto1.objects.Hero;
-import pt.upskill.projeto1.rogue.utils.Position;
+import pt.upskill.projeto1.objects.Characters.Hero;
+import pt.upskill.projeto1.objects.Map.Passage;
+import pt.upskill.projeto1.objects.Map.Room;
+import pt.upskill.projeto1.objects.StatusBar.StatusBar;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 
 public class Engine {
 
@@ -35,10 +36,6 @@ public class Engine {
         tiles = currentRoom.getTiles();
 
         currentRoom.setHero(hero);
-//        for(Room room : rooms) {
-//            System.out.printf("Room %d\n", room.getRoomNumber());
-//            System.out.println(room.getPassages());
-//        }
         statusBar = new StatusBar();
 
         gui.setEngine(this);

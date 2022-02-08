@@ -1,6 +1,6 @@
-package pt.upskill.projeto1.objects;
+package pt.upskill.projeto1.objects.Map;
 
-import pt.upskill.projeto1.game.Passage;
+import pt.upskill.projeto1.objects.Map.Passage;
 import pt.upskill.projeto1.rogue.utils.Position;
 
 public class DoorOpen extends Passage {

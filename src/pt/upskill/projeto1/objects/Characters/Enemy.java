@@ -1,11 +1,9 @@
-package pt.upskill.projeto1.objects;
+package pt.upskill.projeto1.objects.Characters;
 
-import pt.upskill.projeto1.game.Passage;
+import pt.upskill.projeto1.objects.Map.Passage;
+import pt.upskill.projeto1.objects.Obstacle;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static pt.upskill.projeto1.game.Engine.currentRoom;
 

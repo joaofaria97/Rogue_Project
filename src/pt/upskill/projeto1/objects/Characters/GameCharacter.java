@@ -1,5 +1,6 @@
-package pt.upskill.projeto1.objects;
+package pt.upskill.projeto1.objects.Characters;
 
+import pt.upskill.projeto1.objects.Element;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 import pt.upskill.projeto1.rogue.utils.Vector2D;

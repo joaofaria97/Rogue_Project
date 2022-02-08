@@ -1,9 +1,12 @@
-package pt.upskill.projeto1.game;
+package pt.upskill.projeto1.objects.Map;
 
-import pt.upskill.projeto1.gui.Fire;
-import pt.upskill.projeto1.gui.ImageMatrixGUI;
+import pt.upskill.projeto1.game.Command;
 import pt.upskill.projeto1.gui.ImageTile;
 import pt.upskill.projeto1.objects.*;
+import pt.upskill.projeto1.objects.Characters.Enemy;
+import pt.upskill.projeto1.objects.Characters.Hero;
+import pt.upskill.projeto1.objects.Characters.Skeleton;
+import pt.upskill.projeto1.objects.Characters.Thief;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 

@@ -1,13 +1,9 @@
-package pt.upskill.projeto1.game;
+package pt.upskill.projeto1.objects.Map;
 
-import pt.upskill.projeto1.gui.ImageTile;
 import pt.upskill.projeto1.objects.Element;
-import pt.upskill.projeto1.objects.Hero;
 import pt.upskill.projeto1.objects.Obstacle;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
-
-import java.util.List;
 
 public abstract class Passage extends Element implements Obstacle {
     private final int passageNumber;

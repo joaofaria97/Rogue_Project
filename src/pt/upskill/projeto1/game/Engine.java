@@ -11,20 +11,22 @@ import java.util.Queue;
 
 public class Engine {
 
+    public Hero hero;
     public static ImageMatrixGUI gui;
     public static Room currentRoom;
     public static StatusBar statusBar;
 
     private List<Room> rooms;
-    private Hero hero;
     private List<ImageTile> tiles;
 
     public void init(){
         gui = ImageMatrixGUI.getInstance();
+        hero = new Hero(null);
 
         rooms = new ArrayList<Room>();
         File roomDirectory = new File("rooms");
         File[] roomFiles = roomDirectory.listFiles();
+
         for (File roomFile : roomFiles) {
             rooms.add(new Room(roomFile));
         }
@@ -32,8 +34,11 @@ public class Engine {
         currentRoom = rooms.get(0);
         tiles = currentRoom.getTiles();
 
-        hero = new Hero(null);
         currentRoom.setHero(hero);
+//        for(Room room : rooms) {
+//            System.out.printf("Room %d\n", room.getRoomNumber());
+//            System.out.println(room.getPassages());
+//        }
         statusBar = new StatusBar();
 
         gui.setEngine(this);
@@ -51,7 +56,7 @@ public class Engine {
         for (Command command : Command.values()) {
             if (command.getKeyCode() == keyPressed) {
                 currentRoom.play(command);
-                if (currentRoom.isLeaving()) changeRoom(currentRoom.getLeavingPassage());
+                if (currentRoom.getHero().isLeaving()) changeRoom(currentRoom.getHero().getLeavingPassage());
             }
         }
     }

@@ -16,8 +16,8 @@ import java.util.Scanner;
 import static pt.upskill.projeto1.game.Engine.*;
 
 public class Room {
-    private final int ROOM_WIDTH = 10;
-    private final int ROOM_HEIGHT = 10;
+    public static final int ROOM_WIDTH = 10;
+    public static final int ROOM_HEIGHT = 10;
 
     private int roomNumber;
 
@@ -30,6 +30,7 @@ public class Room {
     private List<Element> obstacles;
     private List<Enemy> enemies;
     private List<Passage> passages;
+//    private List<GameCharacter> characters;
 
     private boolean leaving;
     private Passage leavingPassage;
@@ -115,14 +116,14 @@ public class Room {
     }
 
     private void setPassageDirections() {
+        currentRoom = this;
         for (Passage passage : passages) {
             Position position = passage.getPosition();
-            for (Direction direction : hero.getDirections()) {
-                if (legalMove(position.plus(direction.asVector()))) passage.setLeaveDirection(direction.contrary());
+            for (Direction direction : Hero.getDirections()) {
+                if (Hero.legalMove((position.plus(direction.asVector())))) passage.setLeaveDirection(direction.contrary());
             }
         }
     }
-
     private void paintFloor() {
         for (int i = 0; i < ROOM_HEIGHT; i++) {
             for (int j = 0; j < ROOM_WIDTH; j++) {
@@ -157,6 +158,18 @@ public class Room {
         return obstacles;
     }
 
+    public void setObstacles(List<Element> obstacles) {
+        this.obstacles = obstacles;
+    }
+
+    public void setEnemies(List<Enemy> enemies) {
+        this.enemies = enemies;
+    }
+
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
     public List<Passage> getPassages() {
         return passages;
     }
@@ -170,117 +183,13 @@ public class Room {
     }
 
     public void play(Command command) {
-        gui.setStatus("Sala " + currentRoom.getRoomNumber());
-        if (command.getDirection() != null) {
-            controlEnemies();
-            clearDead();
-        }
-        controlHero(command);
-        clearDead();
+        if (command.getDirection() != null) moveEnemies();
+        hero.control(command);
+
+        if (hero.isLeaving()) leavingPassage = hero.getLeavingPassage();
     }
 
-    private void controlHero(Command command) {
-        leaving = false;
-        leavingPassage = null;
-        if (command.getDirection() != null) {
-            lastDirection = command.getDirection();
-
-            Position nextPosition = hero.getPosition().plus(command.getDirection().asVector());
-
-            for (Passage passage : passages) {
-                if ((passage.getPosition().equals(hero.getPosition()) && command.getDirection().equals(passage.getLeaveDirection()))
-                        || passage.getPosition().equals(nextPosition)) {
-                    leaving = true;
-                    leavingPassage = passage;
-                    return;
-                }
-            }
-            for (Enemy enemy : enemies) {
-                if (nextPosition.equals(enemy.getPosition())) hero.attack(enemy);
-            }
-            if (legalMove(nextPosition)) hero.move(command.getDirection().asVector());
-
-        } else {
-            if (command.name().equals("FIRE")) {
-                try {
-                    statusBar.removeFireBall();
-                    hero.launchFire(lastDirection);
-                } catch (NullPointerException e) {
-                    gui.setStatus("Já não tens bolas de fogo!");
-                }
-            }
-//            collectibles
-        }
-
-    }
-
-    private void controlEnemies() {
-        Position heroPosition = hero.getPosition();
-
-        for (Enemy enemy : enemies) {
-            List<Direction> directions = enemy.getDirections();
-            Direction nextDirection = null;
-            Position nextPosition = null;
-
-            if (enemy.getPosition().distance(heroPosition) <= enemy.getChaseDistance()) {
-                // Chase
-                int minDistance = ROOM_HEIGHT + ROOM_WIDTH;
-                for (Direction direction : directions) {
-                    nextPosition = enemy.getPosition().plus(direction.asVector());
-
-                    if (nextPosition.equals(heroPosition) || enemy.getPosition().distance(heroPosition) == 1) {
-                        enemy.attack(hero);
-                        break;
-                    }
-                    else if (nextPosition.distance(hero.getPosition()) < minDistance && legalMove(nextPosition)) {
-                        nextDirection = direction;
-                        minDistance = nextPosition.distance(hero.getPosition());
-                    }
-                }
-
-            } else {
-                // Roam
-                do {
-                    int rand = (int) (Math.random() * directions.size());
-                    nextDirection = directions.get(rand);
-                    nextPosition = enemy.getPosition().plus(nextDirection.asVector());
-                } while (!legalMove(nextPosition));
-            }
-            try {
-                enemy.move(nextDirection.asVector());
-            } catch (NullPointerException e) {
-            }
-        }
-    }
-
-    private boolean legalMove(Position position) {
-        if (position.getX() < 0 || position.getX() >= ROOM_WIDTH) return false;
-        if (position.getY() < 0 || position.getY() >= ROOM_HEIGHT) return false;
-        for (Element obstacle : obstacles) {
-            if (position.equals(obstacle.getPosition())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private void clearDead() {
-        List<Enemy> dead = new ArrayList<Enemy>();
-        for (Enemy enemy : enemies) {
-            if (enemy.getHealth() <= 0) {
-                dead.add(enemy);
-                ImageMatrixGUI.getInstance().removeImage(enemy);
-            }
-        }
-        tiles.removeAll(dead);
-        enemies.removeAll(dead);
-        obstacles.removeAll(dead);
-    }
-
-    @Override
-    public String toString() {
-        return "Room{" +
-                "roomNumber=" + roomNumber +
-                '}';
+    private void moveEnemies() {
+        for (Enemy enemy : getEnemies()) enemy.move();
     }
 }

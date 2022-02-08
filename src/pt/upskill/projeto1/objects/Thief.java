@@ -4,6 +4,7 @@ import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Thief extends Enemy {
 
@@ -20,9 +21,10 @@ public class Thief extends Enemy {
 
     @Override
     public void setDirections() {
-        directions = new ArrayList<Direction>();
+        List<Direction> directions= new ArrayList<Direction>();
         for (Direction direction : Direction.values()) {
             if (direction.isDiagonal()) directions.add(direction);
         }
+        setDirections(directions);
     }
 }

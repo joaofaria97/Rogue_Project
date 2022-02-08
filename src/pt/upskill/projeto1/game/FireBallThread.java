@@ -7,6 +7,7 @@ import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
 import static pt.upskill.projeto1.game.Engine.gui;
+import static pt.upskill.projeto1.game.Engine.statusBar;
 
 public class FireBallThread extends Thread {
 
@@ -43,7 +44,7 @@ public class FireBallThread extends Thread {
         }
         // Remove FireBall of {ImageMatrixGUI}
         gui.removeImage(fireTile);
-
+        statusBar.removeFireBall();
         try {
             gui.removeImage(explosion);
         } catch (NullPointerException e) {

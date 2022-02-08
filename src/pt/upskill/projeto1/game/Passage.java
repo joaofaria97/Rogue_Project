@@ -55,7 +55,8 @@ public abstract class Passage extends Element implements Obstacle {
     @Override
     public String toString() {
         return "Passage{" +
-                "passageNumber=" + passageNumber +
+                "passageNumber = " + passageNumber +
+                " leaveDirection = " + leaveDirection +
                 '}';
     }
 }

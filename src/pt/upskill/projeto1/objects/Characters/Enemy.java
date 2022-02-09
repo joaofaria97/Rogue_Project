@@ -1,5 +1,6 @@
 package pt.upskill.projeto1.objects.Characters;
 
+import pt.upskill.projeto1.objects.Items.Item;
 import pt.upskill.projeto1.objects.Map.Passage;
 import pt.upskill.projeto1.objects.Obstacle;
 import pt.upskill.projeto1.rogue.utils.Direction;
@@ -18,7 +19,6 @@ public abstract class Enemy extends GameCharacter implements Obstacle {
     public int getChaseDistance() {
         return chaseDistance;
     }
-
 
     public void move() {
         Hero hero = currentRoom.getHero();
@@ -58,6 +58,9 @@ public abstract class Enemy extends GameCharacter implements Obstacle {
     public static boolean legalMove(Position position) {
         for (Passage passage : currentRoom.getPassages()) {
             if (position.equals(passage.getPosition())) return false;
+        }
+        for (Item item : currentRoom.getItems()) {
+            if (position.equals(item.getPosition())) return false;
         }
 //        fazer igual para itens
         return GameCharacter.legalMove(position);

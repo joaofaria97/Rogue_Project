@@ -1,6 +1,9 @@
 package pt.upskill.projeto1.objects.Characters;
 
+import pt.upskill.projeto1.gui.ImageTile;
 import pt.upskill.projeto1.objects.Element;
+import pt.upskill.projeto1.objects.Map.Door;
+import pt.upskill.projeto1.objects.Map.Passage;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 import pt.upskill.projeto1.rogue.utils.Vector2D;
@@ -55,6 +58,11 @@ public abstract class GameCharacter extends Element {
                 return false;
             }
         }
+        for (Passage passage : currentRoom.getPassages()) {
+            if (passage instanceof Door) {
+                if (position.equals(passage.getPosition()) && (((Door) passage).isLocked())) return false;
+            }
+        }
         return true;
     }
 
@@ -73,6 +81,10 @@ public abstract class GameCharacter extends Element {
     }
 
     public void die() {
+        List<ImageTile> tiles = currentRoom.getTiles();
+        tiles.remove(this);
+        currentRoom.setTiles(tiles);
+
         List<Element> obstacles = currentRoom.getObstacles();
         obstacles.remove(this);
         currentRoom.setObstacles(obstacles);

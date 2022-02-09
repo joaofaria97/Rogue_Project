@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f409e310-38d4-47a1-8bba-48a3a2b42e6f" name="Default Changelist" comment="Encapsulation update">
+    <list default="true" id="f409e310-38d4-47a1-8bba-48a3a2b42e6f" name="Default Changelist" comment="Package organization">
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Items/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Items/Key.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Passage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Passage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Black.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/StatusBar/Black.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/FireBallThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/FireBallThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Fire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Green.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/StatusBar/Green.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Red.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/StatusBar/Red.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/RedGreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/StatusBar/RedGreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/StatusBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/StatusBar/StatusBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/DoorOpen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/DoorOpen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/DoorWay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/DoorWay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Floor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Floor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/GameCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/GameCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Grass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Hero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Skeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Skeleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Thief.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Thief.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Wall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/GameCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/GameCharacter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Hero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/DoorOpen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Passage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Passage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/StatusBar/StatusBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/StatusBar/StatusBar.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -94,7 +87,7 @@
       <recent name="pt.upskills.projeto.gui" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Engine (1)">
+  <component name="RunManager" selected="Application.Engine">
     <configuration name="Engine" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pt.upskill.projeto1.game.Engine" />
       <module name="Rogue_UPskill2022_v1_Nome_Completo" />
@@ -172,7 +165,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Engine (1)" />
+        <item itemvalue="Application.Engine" />
         <item itemvalue="JUnit.DirectionTest" />
         <item itemvalue="JUnit.PositionTest.testConstructor" />
         <item itemvalue="JUnit.Vector2DTest (1)" />
@@ -237,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644340230078</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Package organization">
+      <created>1644342016378</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1644342016379</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,7 +261,8 @@
     <MESSAGE value="Started status bar" />
     <MESSAGE value="Status bar updates health" />
     <MESSAGE value="Encapsulation update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Encapsulation update" />
+    <MESSAGE value="Package organization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Package organization" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

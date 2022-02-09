@@ -5,19 +5,17 @@ import pt.upskill.projeto1.objects.Obstacle;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
-public abstract class Passage extends Element implements Obstacle {
+public abstract class Passage extends Element{
     private final int passageNumber;
     private final int toPassageNumber;
     private final int toRoomNumber;
-    private Direction leaveDirection;
-    private boolean locked;
+    private Direction exitDirection;
 
     public Passage(Position position, int passageNumber, int toPassageNumber, int toRoomNumber) {
         super(position);
         this.passageNumber = passageNumber;
         this.toPassageNumber = toPassageNumber;
         this.toRoomNumber = toRoomNumber;
-        locked = false;
     }
 
     public int getPassageNumber() {
@@ -32,27 +30,11 @@ public abstract class Passage extends Element implements Obstacle {
         return toRoomNumber;
     }
 
-    public Direction getLeaveDirection() {
-        return leaveDirection;
+    public Direction getExitDirection() {
+        return exitDirection;
     }
 
-    public void setLeaveDirection(Direction leaveDirection) {
-        this.leaveDirection = leaveDirection;
-    }
-
-    public boolean isLocked() {
-        return locked;
-    }
-
-    public void setLocked(boolean locked) {
-        this.locked = locked;
-    }
-
-    @Override
-    public String toString() {
-        return "Passage{" +
-                "passageNumber = " + passageNumber +
-                " leaveDirection = " + leaveDirection +
-                '}';
+    public void setExitDirection(Direction exitDirection) {
+        this.exitDirection = exitDirection;
     }
 }

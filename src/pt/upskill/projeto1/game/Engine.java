@@ -53,28 +53,27 @@ public class Engine {
         for (Command command : Command.values()) {
             if (command.getKeyCode() == keyPressed) {
                 currentRoom.play(command);
-                if (currentRoom.getHero().isLeaving()) changeRoom(currentRoom.getHero().getLeavingPassage());
+                if (currentRoom.isLeaving()) changeRoom(currentRoom.getExit());
             }
         }
     }
 
-    public void changeRoom(Passage leavingPassage) {
-        Room nextRoom = null;
+    public void changeRoom(Passage exit) {
         hero = currentRoom.getHero();
+        hero.leaveRoom();
+
+        gui.clearImages();
 
         for (Room room : rooms) {
-            if (room.getRoomNumber() == leavingPassage.getToRoomNumber()) {
-                nextRoom = room;
-                tiles = room.getTiles();
+            if (room.getRoomNumber() == exit.getToRoomNumber()) {
+                currentRoom = room;
+                tiles = currentRoom.getTiles();
             }
         }
-
-        for (Passage passage : nextRoom.getPassages()) {
-            if (passage.getPassageNumber() == leavingPassage.getToPassageNumber()) hero.setPosition(passage.getPosition());
+        for (Passage passage : currentRoom.getPassages()) {
+            if (passage.getPassageNumber() == exit.getToPassageNumber()) hero.setPosition(passage.getPosition());
         }
-
-        nextRoom.setHero(hero);
-        currentRoom = nextRoom;
+        currentRoom.setHero(hero);
         gui.newImages(tiles);
     }
 

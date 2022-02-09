@@ -3,7 +3,9 @@ package pt.upskill.projeto1.objects;
 import pt.upskill.projeto1.gui.ImageTile;
 import pt.upskill.projeto1.rogue.utils.Position;
 
-public abstract class Element implements ImageTile {
+import java.io.Serializable;
+
+public abstract class Element implements ImageTile, Serializable {
     private Position position;
 
     protected Element(Position position) {

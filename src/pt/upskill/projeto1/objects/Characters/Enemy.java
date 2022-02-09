@@ -62,7 +62,6 @@ public abstract class Enemy extends GameCharacter implements Obstacle {
         for (Item item : currentRoom.getItems()) {
             if (position.equals(item.getPosition())) return false;
         }
-//        fazer igual para itens
         return GameCharacter.legalMove(position);
     }
 }

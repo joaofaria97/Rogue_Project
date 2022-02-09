@@ -6,8 +6,7 @@ import pt.upskill.projeto1.gui.ImageMatrixGUI;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
-import static pt.upskill.projeto1.game.Engine.gui;
-import static pt.upskill.projeto1.game.Engine.statusBar;
+import static pt.upskill.projeto1.game.Engine.*;
 
 public class FireBallThread extends Thread {
 
@@ -17,17 +16,20 @@ public class FireBallThread extends Thread {
     public FireBallThread(Direction direction, FireTile fireTile) {
         this.direction = direction;
         this.fireTile = fireTile;
+        System.out.println(currentRoom.getTiles().size());
     }
 
     @Override
     public void run() {
         boolean control = true;
         Explosion explosion = null;
-//        statusBar.removeFireBall();
+        gui.addImage(fireTile);
+
         while (control) {
+
             Position nextPosition = fireTile.getPosition().plus(direction.asVector());
             fireTile.setPosition(nextPosition);
-            gui.addImage(fireTile);
+
             try {
                 if (fireTile.validateImpact()) {
                     // FireBall continue
@@ -36,18 +38,14 @@ public class FireBallThread extends Thread {
                     // FireBall should explode and stop is job
                     explosion = new Explosion(nextPosition);
                     gui.addImage(explosion);
-                    gui.removeImage(fireTile);
                     sleep(500);
+                    gui.removeImage(explosion);
+                    gui.removeImage(fireTile);
                     control = false;
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
-        // Remove FireBall of {ImageMatrixGUI}
-        try {
-            gui.removeImage(explosion);
-        } catch (NullPointerException e) {
         }
     }
 }

@@ -25,17 +25,21 @@ public class StatusBar {
         healthBar = new ArrayList<>();
         itemBar = new ArrayList<>();
 
+        setStatusTiles();
+    }
+
+    public void paintBackground() {
         for (int i = 0; i < 10; i++) {
             Position position = new Position(i, 0);
             gui.addStatusImage(new Black(position));
-            if (i >= 3 && i < 7) gui.addStatusImage(new Red(position));
         }
-        setStatusTiles();
     }
 
     public void setStatusTiles() {
         gui.clearStatus();
+        statusTiles.clear();
 
+        paintBackground();
         updateFire();
         updateHealth();
         updateItems();
@@ -47,26 +51,36 @@ public class StatusBar {
     }
 
     public void updateFire() {
+        fireBar.clear();
         for (int i = 0; i < currentRoom.getHero().getFireBalls().size(); i++) {
             fireBar.add(new Fire(new Position(i, 0)));
         }
     }
 
     public void updateHealth() {
+        healthBar.clear();
         int offset = 3;
-        int health = currentRoom.getHero().getHealth() / 10;
+        int health = currentRoom.getHero().getHealth();
+        int healthPercentage = (int) ((double) health / currentRoom.getHero().MAX_HEALTH * 8);
+
         int i = 0;
-        for (; i < health; i += 2)
+        for (; i < healthPercentage; i += 2)
             healthBar.add(new Green(new Position(i / 2 + offset, 0)));
-        if (health % 2 != 0)
+        if (healthPercentage % 2 != 0)
             healthBar.add(new RedGreen(new Position((i - 1) / 2 + offset, 0)));
+        for (; i < 8; i += 2)
+            healthBar.add(new Red(new Position(i / 2 + offset, 0)));
     }
 
     public void updateItems() {
+        itemBar.clear();
         int offset = 7;
         int i = 0;
         for (Item item : currentRoom.getHero().getItems()) {
-            if (item != null) item.setPosition(new Position(i + offset, 0));
+            if (item != null) {
+                item.setPosition(new Position(i + offset, 0));
+                itemBar.add(item);
+            }
             i++;
         }
     }

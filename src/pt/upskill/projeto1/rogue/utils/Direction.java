@@ -27,7 +27,6 @@ public enum Direction {
 		return diagonal;
 	}
 
-
 	public Vector2D asVector() {
 		if(this==Direction.UP) return new Vector2D(0, -1);
 		if(this==Direction.DOWN) return new Vector2D(0, 1);

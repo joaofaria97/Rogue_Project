@@ -49,6 +49,7 @@ public class Door extends Passage {
     public void unlock() {
         setLocked(false);
     }
+
     @Override
     public String getName() {
         return name;

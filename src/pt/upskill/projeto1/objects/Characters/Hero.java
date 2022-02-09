@@ -75,8 +75,11 @@ public class Hero extends GameCharacter {
     public void collect(Item item) {
         for (int i = 0; i < items.length; i++) {
             if (items[i] == null) {
+                System.out.printf("Item %s put in slot %d\n", item.getName(), i);
                 items[i] = item;
                 item.getCollected();
+                statusBar.updateItems();
+                return;
             }
         }
     }
@@ -111,21 +114,50 @@ public class Hero extends GameCharacter {
         } else {
             if (command.name().equals("FIRE")) {
                 try {
-                    launchFire(lastDirection);
+                    launchFire();
                 } catch (NullPointerException e) {
                     gui.setStatus("Já não tens bolas de fogo!");
                 }
+            }
+            if (command.name().contains("DROP")) {
+                int number = Integer.parseInt(command.name().split("DROP_ITEM")[1]);
+                System.out.println(number);
+                dropItem(number);
             }
         }
         statusBar.setStatusTiles();
     }
 
-    public void launchFire(Direction direction) {
+    public void launchFire() {
         Fire fireBall = fireBalls.poll();
         fireBall.setPosition(getPosition());
-        FireBallThread fireBallThread = new FireBallThread(direction, fireBall);
-        fireBallThread.run();
-        gui.removeImage(fireBall);
+        FireBallThread fireBallThread = new FireBallThread(lastDirection, fireBall);
+        fireBallThread.start();
+        System.out.println(getFireBalls().size());
+    }
+
+    public void dropItem(int index) {
+        index--;
+        try {
+            Item item = items[index];
+
+            int i = 0;
+            for (; i < getDirections().size(); i++) {
+                if (getDirections().get(i).equals(lastDirection)) break;
+            }
+
+            Position nextPosition = getPosition().plus(lastDirection.asVector());
+            while (!Enemy.legalMove(nextPosition)) {
+                nextPosition = getPosition().plus(getDirections().get(i % getDirections().size()).asVector());
+                i++;
+                if (i >= 2 * getDirections().size()) return;
+            }
+
+            item.setPosition(nextPosition);
+            item.getDropped();
+            items[index] = null;
+        } catch (NullPointerException e) {
+        }
     }
 
     public void leaveRoom() {

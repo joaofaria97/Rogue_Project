@@ -13,6 +13,7 @@ public class Thief extends Enemy {
         super(position);
         setHealth(8);
         setDamage(2);
+        setDirections();
     }
 
     @Override
@@ -26,6 +27,6 @@ public class Thief extends Enemy {
         for (Direction direction : Direction.values()) {
             if (direction.isDiagonal()) directions.add(direction);
         }
-        setDirections(directions);
+        setCharDirections(directions);
     }
 }

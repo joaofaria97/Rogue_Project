@@ -40,4 +40,8 @@ public abstract class Item extends Element {
 
         gui.addImage(this);
     }
+
+    public void vanish() {
+        getCollected();
+    }
 }

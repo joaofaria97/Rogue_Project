@@ -3,11 +3,14 @@ package pt.upskill.projeto1.objects.Characters;
 import pt.upskill.projeto1.game.Command;
 import pt.upskill.projeto1.game.FireBallThread;
 import pt.upskill.projeto1.objects.Element;
+import pt.upskill.projeto1.objects.Items.GoodMeat;
 import pt.upskill.projeto1.objects.Items.Item;
 import pt.upskill.projeto1.objects.Items.Key;
 import pt.upskill.projeto1.objects.Map.Door;
+import pt.upskill.projeto1.objects.Map.Hole;
 import pt.upskill.projeto1.objects.Map.Passage;
 import pt.upskill.projeto1.gui.Fire;
+import pt.upskill.projeto1.objects.Map.Weapon;
 import pt.upskill.projeto1.objects.StatusBar.StatusBar;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
@@ -22,6 +25,8 @@ import static pt.upskill.projeto1.game.Engine.*;
 public class Hero extends GameCharacter {
     public static final int MAX_HEALTH = 20;
     private int BASE_DAMAGE = 5;
+
+    private int damage;
 
     private Direction lastDirection;
 
@@ -38,14 +43,6 @@ public class Hero extends GameCharacter {
         for (int i = 0; i < 3; i++) fireBalls.add(new Fire(position));
 
         items = new Item[3];
-    }
-
-    public int getBASE_DAMAGE() {
-        return BASE_DAMAGE;
-    }
-
-    public void setBASE_DAMAGE(int BASE_DAMAGE) {
-        this.BASE_DAMAGE = BASE_DAMAGE;
     }
 
     public Direction getLastDirection() {
@@ -74,8 +71,12 @@ public class Hero extends GameCharacter {
 
     public void collect(Item item) {
         for (int i = 0; i < items.length; i++) {
+            if (item instanceof GoodMeat) {
+                setHealth(MAX_HEALTH);
+                item.getCollected();
+                return;
+            }
             if (items[i] == null) {
-                System.out.printf("Item %s put in slot %d\n", item.getName(), i);
                 items[i] = item;
                 item.getCollected();
                 statusBar.updateItems();
@@ -86,27 +87,49 @@ public class Hero extends GameCharacter {
 
     public void control(Command command) {
         if (command.getDirection() != null) {
+            --score;
             lastDirection = command.getDirection();
             for (GameCharacter enemy : currentRoom.getEnemies()) {
                 if (enemy.getPosition().equals(getPosition().plus(command.getDirection().asVector()))) {
+                    for (int i = 0; i < getItems().length; i++) { //Item item : getItems()) {
+                        Item item = getItems()[i];
+                        if (item instanceof Weapon) {
+                            Weapon weapon = (Weapon) item;
+                            int uses = weapon.getUses();
+                            weapon.setUses(uses - 1);
+                            if (uses - 1 == 0) {
+                                dropItem(i);
+                                item.vanish();
+                                setDamage(damage - weapon.getDamageBoost());
+                            }
+                        }
+                    }
                     attack(enemy);
                     return;
                 }
             }
             for (Passage passage : currentRoom.getPassages()) {
-                if ((getPosition().equals(passage.getPosition()) || getPosition().plus(command.getDirection().asVector()).equals(passage.getPosition())) && passage instanceof Door) {
-                    Door door = (Door) passage;
-                    for (Item item : getItems()) {
-                        if (item instanceof Key) {
-                            Key key = (Key) item;
-                            if (key.getKeyNumber() == door.getUnlockNumber()) key.unlockDoor();
+                if ((getPosition().equals(passage.getPosition()) || getPosition().plus(command.getDirection().asVector()).equals(passage.getPosition()))) {
+                    if (passage instanceof Door) {
+                        Door door = (Door) passage;
+                        for (Item item : getItems()) {
+                            if (item instanceof Key) {
+                                Key key = (Key) item;
+                                if (key.getKeyNumber() == door.getUnlockNumber()) key.unlockDoor();
+                            }
                         }
+                    }
+                    if (passage instanceof Hole) {
+                        System.out.println("JOGO FINALIZADO");
+                        System.out.println("SCORE: " + score);
+                        System.exit(0);
                     }
                 }
             }
             move(command.getDirection().asVector());
             for (Item item : currentRoom.getItems()) {
                 if (getPosition().equals(item.getPosition())) {
+                    if (item instanceof Weapon) setDamage(damage + (((Weapon) item).getDamageBoost()));
                     collect(item);
                     break;
                 }
@@ -121,7 +144,6 @@ public class Hero extends GameCharacter {
             }
             if (command.name().contains("DROP")) {
                 int number = Integer.parseInt(command.name().split("DROP_ITEM")[1]);
-                System.out.println(number);
                 dropItem(number);
             }
         }
@@ -133,7 +155,6 @@ public class Hero extends GameCharacter {
         fireBall.setPosition(getPosition());
         FireBallThread fireBallThread = new FireBallThread(lastDirection, fireBall);
         fireBallThread.start();
-        System.out.println(getFireBalls().size());
     }
 
     public void dropItem(int index) {

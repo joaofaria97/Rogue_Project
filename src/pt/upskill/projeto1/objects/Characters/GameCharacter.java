@@ -15,6 +15,7 @@ import static pt.upskill.projeto1.game.Engine.*;
 
 public abstract class GameCharacter extends Element {
     public static List<Direction> directions;
+    public List<Direction> charDirections;
     private int health;
     private int damage;
 
@@ -44,10 +45,23 @@ public abstract class GameCharacter extends Element {
         for (Direction direction : Direction.values()) {
             if (!direction.isDiagonal()) directions.add(direction);
         }
+
+        charDirections = new ArrayList<Direction>();
+        for (Direction direction : Direction.values()) {
+            if (!direction.isDiagonal()) charDirections.add(direction);
+        }
     }
 
     public void setDirections(List<Direction> directions) {
         this.directions = directions;
+    }
+
+    public List<Direction> getCharDirections() {
+        return charDirections;
+    }
+
+    public void setCharDirections(List<Direction> charDirections) {
+        this.charDirections = charDirections;
     }
 
     public static boolean legalMove(Position position) {
@@ -94,5 +108,7 @@ public abstract class GameCharacter extends Element {
         currentRoom.setEnemies(enemies);
 
         gui.removeImage(this);
+
+        if (this instanceof Enemy) score += 20;
     }
 }

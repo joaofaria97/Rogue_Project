@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="f409e310-38d4-47a1-8bba-48a3a2b42e6f" name="Default Changelist" comment="A except checkpoint">
-      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/PipedDeepCopy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rooms/room3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rooms/room4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rooms/room5.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/BadGuy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Bat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Items/GoodMeat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Items/Hammer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Items/Sword.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Hole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/StairsDown.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/StairsUp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Weapon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rooms/room0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/rooms/room0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rooms/room1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/rooms/room1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rooms/room2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/rooms/room2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/FireBallThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/game/FireBallThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/Fire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/ImageMatrixGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/gui/ImageMatrixGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/GameCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/GameCharacter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Hero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Thief.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Characters/Thief.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Items/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/Map/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/StatusBar/StatusBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/upskill/projeto1/objects/StatusBar/StatusBar.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,26 +80,27 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/rooms" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="advanced.settings" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\João\IdeaProjects\Rogue_Project1\rooms" />
       <recent name="C:\Users\João Faria\Desktop\Rogue_UPskill2022_v1_Nome_Completo\images" />
       <recent name="C:\Users\João Faria\Desktop\Rogue_UPskill2022_v1_Nome_Completo\rooms" />
       <recent name="C:\Users\João Faria\Desktop\Rogue_UPskill2022_v1_Nome_Completo" />
       <recent name="C:\Users\N580V\OneDrive - ISCTE-IUL\Programação\Java\POO\Rogue_Iscte2020_v_1_0_Nome_Completo" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="pt.upskill.projeto1.objects.Map" />
+      <recent name="pt.upskill.projeto1.objects.Items" />
+      <recent name="pt.upskill.projeto1.objects.Characters" />
       <recent name="pt.upskill.projeto1.game" />
       <recent name="pt.upskill.projeto1.gui" />
-      <recent name="pt.upskill.projeto1.objects" />
-      <recent name="pt.upskills.projeto.game" />
-      <recent name="pt.upskills.projeto.gui" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Engine">

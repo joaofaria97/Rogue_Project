@@ -10,10 +10,16 @@ import static pt.upskill.projeto1.game.Engine.currentRoom;
 
 public abstract class Enemy extends GameCharacter implements Obstacle {
     private int chaseDistance;
+    private int score;
 
     public Enemy(Position position) {
         super(position);
         chaseDistance = 3;
+        score = 5;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public int getChaseDistance() {
@@ -35,7 +41,7 @@ public abstract class Enemy extends GameCharacter implements Obstacle {
             // chase
             int minDistance = currentRoom.ROOM_HEIGHT + currentRoom.ROOM_WIDTH;
             Direction minDirection = null;
-            for (Direction direction : getDirections()) {
+            for (Direction direction : getCharDirections()) {
                 Position nextPosition = getPosition().plus(direction.asVector());
                 if (nextPosition.distance(hero.getPosition()) < minDistance && legalMove(nextPosition)) {
                     minDistance = nextPosition.distance(hero.getPosition());
@@ -49,7 +55,7 @@ public abstract class Enemy extends GameCharacter implements Obstacle {
             Direction direction = null;
             do {
                 int rand = (int) (Math.random() * getDirections().size());
-                direction = getDirections().get(rand);
+                direction = getCharDirections().get(rand);
             } while (!legalMove(getPosition().plus(direction.asVector())));
             move(direction.asVector());
         }

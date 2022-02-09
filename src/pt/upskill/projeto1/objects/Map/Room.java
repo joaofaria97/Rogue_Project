@@ -3,12 +3,8 @@ package pt.upskill.projeto1.objects.Map;
 import pt.upskill.projeto1.game.Command;
 import pt.upskill.projeto1.gui.ImageTile;
 import pt.upskill.projeto1.objects.*;
-import pt.upskill.projeto1.objects.Characters.Enemy;
-import pt.upskill.projeto1.objects.Characters.Hero;
-import pt.upskill.projeto1.objects.Characters.Skeleton;
-import pt.upskill.projeto1.objects.Characters.Thief;
-import pt.upskill.projeto1.objects.Items.Item;
-import pt.upskill.projeto1.objects.Items.Key;
+import pt.upskill.projeto1.objects.Characters.*;
+import pt.upskill.projeto1.objects.Items.*;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
@@ -82,6 +78,9 @@ public class Room implements Serializable {
                             char ch = lineArray[1].charAt(0);
                             if (ch == 'E') passages.add(new DoorWay(null, passageNumber, toPassageNumber, toRoomNumber));
                             if (ch == 'D') passages.add(new Door(null, passageNumber, toPassageNumber, toRoomNumber, unlockNumber));
+                            if (ch == '^') passages.add(new StairsUp(null, passageNumber, toPassageNumber, toRoomNumber));
+                            if (ch == 'v') passages.add(new StairsDown(null, passageNumber, toPassageNumber, toRoomNumber));
+                            if (ch == 'o') passages.add(new Hole(null, passageNumber, toPassageNumber, toRoomNumber));
 
                         } else if (lineArray.length == 2) {
                             // key info
@@ -124,7 +123,12 @@ public class Room implements Serializable {
                         if (ch == 'W') tiles.add(new Wall(position));
                         if (ch == 'S') tiles.add(new Skeleton(position));
                         if (ch == 'T') tiles.add(new Thief(position));
+                        if (ch == 'G') tiles.add(new BadGuy(position));
+                        if (ch == 'B') tiles.add(new Bat(position));
 
+                        if (ch == 'm') tiles.add(new GoodMeat(position));
+                        if (ch == 's') tiles.add(new Sword(position));
+                        if (ch == 'h') tiles.add(new Hammer(position));
                         if (ch == 'k') {
                             for (Element item : items) {
                                 if (item instanceof Key) {
@@ -151,6 +155,7 @@ public class Room implements Serializable {
         for (ImageTile tile : tiles) {
             if (tile instanceof Obstacle) obstacles.add((Element) tile);
             if (tile instanceof Enemy) enemies.add((Enemy) tile);
+            if (tile instanceof Item && !(tile instanceof Key)) items.add((Item) tile);
         }
     }
 

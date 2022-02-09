@@ -12,6 +12,8 @@ import java.util.List;
 
 public class Engine implements Serializable {
 
+    public static int score;
+
     public Hero hero;
     public static ImageMatrixGUI gui;
     public static Room currentRoom;
@@ -28,6 +30,8 @@ public class Engine implements Serializable {
         rooms = new ArrayList<Room>();
         File roomDirectory = new File("rooms");
         File[] roomFiles = roomDirectory.listFiles();
+
+        score = 100;
 
         for (File roomFile : roomFiles) {
             rooms.add(new Room(roomFile));
@@ -56,6 +60,16 @@ public class Engine implements Serializable {
                 currentRoom.play(command);
                 if (currentRoom.isLeaving()) changeRoom(currentRoom.getExit());
             }
+        }
+        gui.setStatus("SCORE: " + score);
+        if (hero.getHealth() <= 0) {
+            System.out.println("MORRESTE");
+            System.exit(0);
+        }
+        if (score <= 0) {
+            System.out.println("NÃO SABES JOGAR");
+            System.out.println("SCORE: " + score);
+            System.exit(0);
         }
     }
 

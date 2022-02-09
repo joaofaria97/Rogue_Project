@@ -18,7 +18,6 @@ public class FireBallThread extends Thread implements Serializable {
     public FireBallThread(Direction direction, FireTile fireTile) {
         this.direction = direction;
         this.fireTile = fireTile;
-        System.out.println(currentRoom.getTiles().size());
     }
 
     @Override

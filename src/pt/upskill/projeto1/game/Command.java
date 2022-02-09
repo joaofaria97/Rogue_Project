@@ -3,8 +3,9 @@ package pt.upskill.projeto1.game;
 import pt.upskill.projeto1.rogue.utils.Direction;
 
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 
-public enum Command {
+public enum Command implements Serializable {
     MOVE_UP (KeyEvent.VK_UP, Direction.UP),
     MOVE_DOWN (KeyEvent.VK_DOWN, Direction.DOWN),
     MOVE_LEFT (KeyEvent.VK_LEFT, Direction.LEFT),

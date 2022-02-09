@@ -17,15 +17,21 @@ public class Fire extends Element implements FireTile {
     @Override
     public boolean validateImpact() {
         boolean impact = true;
+        Enemy target = null;
         for (Element obstacle : currentRoom.getObstacles()) {
             if (obstacle.getPosition().equals(getPosition())) {
                 if (obstacle instanceof Enemy) {
-                    Enemy enemy = (Enemy) obstacle;
-                    enemy.die();
+                    target = (Enemy) obstacle;
                 }
                 impact = false;
             }
         }
+
+        try {
+            target.die();
+        } catch (NullPointerException e) {
+        }
+
         for (Passage passage : currentRoom.getPassages()) {
             if (passage.getPosition().equals(getPosition())) impact = false;
         }

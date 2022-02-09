@@ -1,8 +1,9 @@
 package pt.upskill.projeto1.rogue.utils;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Vector2D {
+public class Vector2D implements Serializable {
 
     private int x;
     private int y;

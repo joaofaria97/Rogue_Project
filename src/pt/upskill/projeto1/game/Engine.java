@@ -6,16 +6,17 @@ import pt.upskill.projeto1.objects.Map.Passage;
 import pt.upskill.projeto1.objects.Map.Room;
 import pt.upskill.projeto1.objects.StatusBar.StatusBar;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Engine {
+public class Engine implements Serializable {
 
     public Hero hero;
     public static ImageMatrixGUI gui;
     public static Room currentRoom;
     public static StatusBar statusBar;
+    public static Object checkPoint;
 
     private List<Room> rooms;
     private List<ImageTile> tiles;
@@ -23,7 +24,7 @@ public class Engine {
     public void init(){
         gui = ImageMatrixGUI.getInstance();
         hero = new Hero(null);
-
+        checkPoint = null;
         rooms = new ArrayList<Room>();
         File roomDirectory = new File("rooms");
         File[] roomFiles = roomDirectory.listFiles();
@@ -67,6 +68,10 @@ public class Engine {
         for (Room room : rooms) {
             if (room.getRoomNumber() == exit.getToRoomNumber()) {
                 currentRoom = room;
+                if (currentRoom.isCheckPoint()) {
+                    checkPoint = PipedDeepCopy.copy(this);
+                    currentRoom.setCheckPoint(false);
+                }
                 tiles = currentRoom.getTiles();
             }
         }

@@ -14,13 +14,14 @@ import pt.upskill.projeto1.rogue.utils.Position;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import static pt.upskill.projeto1.game.Engine.*;
 
-public class Room {
+public class Room implements Serializable {
     public static final int ROOM_WIDTH = 10;
     public static final int ROOM_HEIGHT = 10;
 
@@ -30,6 +31,7 @@ public class Room {
     private Position seedPosition;
     private Direction lastDirection;
 
+    private boolean checkPoint;
     private List<ImageTile> tiles;
     private List<Element> obstacles;
     private List<Enemy> enemies;
@@ -40,11 +42,13 @@ public class Room {
     private Passage exit;
 
     // Constructor
+
     public Room(File roomFile) {
         this.roomNumber = Integer.parseInt(roomFile.getName().split("room")[1].split(".txt")[0]);
 
         lastDirection = Direction.RIGHT;
 
+        checkPoint = false;
         tiles = new ArrayList<ImageTile>();
         obstacles = new ArrayList<Element>();
         enemies = new ArrayList<Enemy>();
@@ -64,6 +68,7 @@ public class Room {
                 if (fileLine.charAt(0) == '#') {
                     try {
                         String[] lineArray = fileLine.substring(2).split(" ");
+                        if (fileLine.contains("checkpoint")) setCheckPoint(true);
                         if (lineArray.length >= 4) {
                             // passage info
                             int passageNumber = Integer.parseInt(lineArray[0]);
@@ -177,6 +182,10 @@ public class Room {
         return lastDirection;
     }
 
+    public boolean isCheckPoint() {
+        return checkPoint;
+    }
+
     public List<ImageTile> getTiles() {
         return tiles;
     }
@@ -220,6 +229,10 @@ public class Room {
 
     public void setLastDirection(Direction lastDirection) {
         this.lastDirection = lastDirection;
+    }
+
+    public void setCheckPoint(boolean checkPoint) {
+        this.checkPoint = checkPoint;
     }
 
     public void setTiles(List<ImageTile> tiles) {

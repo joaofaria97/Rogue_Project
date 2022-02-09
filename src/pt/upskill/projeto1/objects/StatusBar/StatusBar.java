@@ -5,6 +5,7 @@ import pt.upskill.projeto1.objects.Characters.Hero;
 import pt.upskill.projeto1.objects.Items.Item;
 import pt.upskill.projeto1.rogue.utils.Position;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.Queue;
 import static pt.upskill.projeto1.game.Engine.currentRoom;
 import static pt.upskill.projeto1.game.Engine.gui;
 
-public class StatusBar {
+public class StatusBar implements Serializable {
     private List<ImageTile> statusTiles;
     private List<ImageTile> fireBar;
     private List<ImageTile> healthBar;

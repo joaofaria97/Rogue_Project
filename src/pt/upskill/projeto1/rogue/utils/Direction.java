@@ -1,12 +1,14 @@
 package pt.upskill.projeto1.rogue.utils;
 
+import java.io.Serializable;
+
 /**
  * @author POO2016
  *
  * Cardinal directions
  *
  */
-public enum Direction {
+public enum Direction implements Serializable {
 	LEFT(false),
 	UP(false),
 	RIGHT(false),

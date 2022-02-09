@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.Serializable;
 import java.util.List;
 import java.util.*;
 
@@ -48,7 +49,7 @@ import java.util.*;
  * @author lmmn
  *
  */
-public class ImageMatrixGUI {
+public class ImageMatrixGUI implements Serializable {
 
 	private static final ImageMatrixGUI INSTANCE = new ImageMatrixGUI();
 

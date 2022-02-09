@@ -6,9 +6,11 @@ import pt.upskill.projeto1.gui.ImageMatrixGUI;
 import pt.upskill.projeto1.rogue.utils.Direction;
 import pt.upskill.projeto1.rogue.utils.Position;
 
+import java.io.Serializable;
+
 import static pt.upskill.projeto1.game.Engine.*;
 
-public class FireBallThread extends Thread {
+public class FireBallThread extends Thread implements Serializable {
 
     private Direction direction;
     private FireTile fireTile;
